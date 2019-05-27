@@ -11,8 +11,8 @@ pygame.display.set_caption("Flap.py Bird")
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 base_x = 0
 bird_flap = 0
-bird_rotation = -50
-
+bird_rotation = 0
+bird_y = 150
 
 while 1:
 
@@ -30,7 +30,7 @@ while 1:
     if base_x == -336:
         base_x = 0
 
-    draw_bird(screen, bird_flap, bird_rotation)
+    draw_bird(screen, bird_flap, bird_rotation, bird_y)
 
     bird_flap = bird_flap + 1
 
@@ -40,8 +40,10 @@ while 1:
     pressed = pygame.key.get_pressed()
 
     if pressed[pygame.K_SPACE]:
-        print("w is pressed")
+        bird_rotation = 15
+        bird_y = bird_y - 5
     else:
-        print("falling")
+        bird_y = bird_y + 2.5
+        bird_rotation = -15
 
     pygame.display.flip()

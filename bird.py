@@ -1,7 +1,7 @@
 import pygame
 
 
-def draw_bird(screen, count, rotation):
+def draw_bird(screen, count, rotation, bird_y):
 
     down, middle, up = pygame.image.load("sprites/bird-one.png"), pygame.image.load(
         "sprites/bird-two.png"), pygame.image.load("sprites/bird-three.png")
@@ -14,4 +14,4 @@ def draw_bird(screen, count, rotation):
         image = up
 
     image = pygame.transform.rotate(image, rotation)
-    screen.blit(image, (70, 150))
+    screen.blit(image, (70, bird_y))
