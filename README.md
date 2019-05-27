@@ -1,2 +1,3 @@
-# flap.py-bird
+# flap.py
+
 Flappy Bird Clone with Pygame
