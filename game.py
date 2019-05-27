@@ -1,10 +1,11 @@
 import pygame
+import sys
 from datetime import datetime
 
 
 BACKGROUNDS = (
-    'sprites/bg-day.png',
-    'sprites/bg-night.png'
+    "sprites/bg-day.png",
+    "sprites/bg-night.png"
 )
 
 BIRDS = (
@@ -29,12 +30,25 @@ BIRDS = (
 
 pygame.init()
 pygame.display.set_caption("Flap.py Bird")
+screen = pygame.display.set_mode((320, 600))
+now = datetime.now()
 icon = pygame.image.load(BIRDS[2][1])
 pygame.display.set_icon(icon)
-screen = pygame.display.set_mode((400, 300))
-now = datetime.now()
 
 
-while True:
+while 1:
+
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.quit()
+            sys.exit()
+
+    if(now.hour > 18):
+        bg = pygame.image.load(BACKGROUNDS[1])
+    else:
+        bg = pygame.image.load(BACKGROUNDS[0])
+
+    bg = pygame.transform.scale(bg, (320, 600))
+    screen.blit(bg, (0, 0))
 
     pygame.display.flip()
