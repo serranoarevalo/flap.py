@@ -13,6 +13,8 @@ base_x = 0
 bird_flap = 0
 bird_rotation = 0
 bird_y = 150
+going_up = False
+up_counter = 0
 
 while 1:
 
@@ -39,11 +41,26 @@ while 1:
 
     pressed = pygame.key.get_pressed()
 
-    if pressed[pygame.K_SPACE]:
-        bird_rotation = 15
-        bird_y = bird_y - 5
+    if pressed[pygame.K_SPACE] and not going_up:
+        going_up = True
+
+    if going_up is True and not pressed[pygame.K_SPACE]:
+
+        bird_rotation = 20
+
+        bird_y = bird_y - 6
+
+        if up_counter < 10:
+            up_counter = up_counter + 1
+        else:
+            up_counter = 0
+            going_up = False
+
     else:
-        bird_y = bird_y + 2.5
-        bird_rotation = -15
+
+        bird_y = bird_y + 4
+
+        if bird_rotation > -15:
+            bird_rotation = bird_rotation - 2.5
 
     pygame.display.flip()
