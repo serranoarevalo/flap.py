@@ -1,37 +1,25 @@
 import pygame
 import sys
-from background import Background
+from background import set_background
+from base import make_platform
 
-BIRDS = (
-    (
-        "sprites/blue-one.png",
-        "sprites/blue-two.png",
-        "sprites/blue-three.png"
-    ),
-    (
-        "sprites/red-one.png",
-        "sprites/red-two.png",
-        "sprites/red-three.png"
-    ),
-    (
-        "sprites/yellow-one.png",
-        "sprites/yellow-two.png",
-        "sprites/yellow-three.png"
-    ),
-
-)
-
+WIDTH, HEIGHT = 320, 600
 
 pygame.init()
 pygame.display.set_caption("Flap.py Bird")
-screen = pygame.display.set_mode((320, 600))
-icon = pygame.image.load(BIRDS[2][1])
-pygame.display.set_icon(icon)
-
+screen = pygame.display.set_mode((WIDTH, HEIGHT))
+base_x = 0
 
 while 1:
 
-    Background(screen)
+    set_background(screen, WIDTH, HEIGHT)
+
+    make_platform(screen, WIDTH, HEIGHT, base_x)
+
+    base_x = base_x - 1
+
+    if(base_x == -336):
+        base_x = 0
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
